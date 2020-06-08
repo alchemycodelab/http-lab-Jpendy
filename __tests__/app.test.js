@@ -43,4 +43,21 @@ describe('createResponse', () => {
         expect(res.text).toEqual('hello');
       });
   });
+
+  it('handles wrong path', () => {
+    return request(app)
+      .get('/wrong')
+      .then(res => {
+        expect(res.text).toEqual('Not Found');
+      });
+  });
+
+  it('handles wrong method (.trace)', () => {
+    return request(app)
+      .trace('/red')
+      .then(res => {
+        expect(res.text).toEqual('Not Found');
+      });
+  });
+
 });
